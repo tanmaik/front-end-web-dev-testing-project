@@ -32,6 +32,19 @@ The following test cases are currently missing from the end-to-end test suite an
 - While cypress is running (`yarn cypress:open`), any saved modifications to the test files will automatically reload cypress and re-run the tests
 - The real-world app and example Cypress tests are written in [Typescript](https://www.typescriptlang.org/), which is a typed programming language built on top of Javascript. It is **not** required for you to write your tests with Typescript, plain Javascript is perfectly valid
 - The existing cypress tests in `cypress/tests/ui` can be used as inspiration for how to structure your tests and take advantage of various patterns/selectors within cypress
+- Cypress has a notion of custom commands. Throughout the existing tests you will see 2 commonly referenced - `getBySel` and `getBySelLike`:
+    - `getBySel` yields elements with a `data-test` attribute that match a specified selector.
+    - `getBySelLike` yields elements with a `data-test` attribute that contains a specified selector.
+```
+// These are custom commands that are helpful when writing tests. Feel free to use these or even make your own if you think it would be a useful abstraction!
+Cypress.Commands.add('getBySel', (selector, ...args) => {
+  return cy.get(`[data-test=${selector}]`, ...args)
+})
+
+Cypress.Commands.add('getBySelLike', (selector, ...args) => {
+  return cy.get(`[data-test*=${selector}]`, ...args)
+})
+```
 
 ### Solutions are Judged on
 1. Readability of your code - Can another developer review your code and easily understand the intent/purpose?
