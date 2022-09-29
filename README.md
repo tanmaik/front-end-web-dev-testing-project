@@ -12,19 +12,26 @@ This project is designed to exercise your web development skills, specifically f
 3. To run the application, run `yarn dev`
 4. To run Cypress, open up a separate terminal, navigate to this repo's directory and run `yarn cypress:open`
 5. At this point, you should have 2 applications running - the real-world payment application and the cypress application
-6. You are now ready to start writing tests! Open this repository in your favorite code editor (We recommend [VSCode](https://code.visualstudio.com/) for front-end development) and review the project structure. The test files that you will be updating are located at `cypress/tests/ui`. The source code for the application is located in the `src` directory.
+6. You are now ready to start writing tests! Open this repository in your favorite code editor (We recommend [VSCode](https://code.visualstudio.com/) for front-end development) and review the project structure. The test files that you will be updating are located at `cypress/tests/ui`. The source code for the application is located in the `src` directory
 
 ### Test coverage to be added
 The following test cases are currently missing from the end-to-end test suite and thus we are asking you to help us out by resolving these gaps in test coverage. The test cases are outlined at a high level - you will be responsible for deciding which assertions are valuable and sufficient in order to make sure the test effectively covers the functionality being exercised.
-- TBD
+
+#### Test cases
+1. Sign up as a new user, onboard by creating a new bank account, and logout
+    - fill in the empty test named `"should allow a visitor to sign-up, login, and logout"` within `cypress/tests/ui/auth.spec.ts`
+1. Send a payment transaction to a contact as an existing user
+    - fill in the empty test named `"navigates to the new transaction form, selects a user and submits a transaction payment"` within `cypress/tests/ui/new-transaction.spec.ts`
+1. Update account settings as an existing user
+    - fill in the empty test named `"updates first name, last name, email and phone number"` within `cypress/tests/ui/user-settings.spec.ts`
 
 ### Helpful notes
 - Cypress has great docs so it is advised to refer to them for questions/guidance on writing great end-to-end tests. [Here are the intro docs](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#What-you-ll-learn), which is recommended reading ahead of writing your first test
-- The application is seeded with fresh data every time it is started (by running `yarn dev`). This seed data can be found at `data/database-seed.json`.
-- You can use any user you'd like for testing purposes, which can be found in the database-seed JSON file. The default password for all users is `s3cret`. - While cypress is running (`yarn cypress:open`), any saved modifications to the test files will automatically reload cypress and re-run the tests.
-- The real-world app and example Cypress tests are written in [Typescript](https://www.typescriptlang.org/), which is a typed programming language built on top of Javascript. It is **not** required for you to write your tests with Typescript, plain Javascript is perfectly valid.
+- The application is seeded with fresh data every time it is started (by running `yarn dev`). This seed data can be found at `data/database-seed.json`
+- You can use any user you'd like for testing purposes, which can be found in the database-seed JSON file. The default password for all users is `s3cret`
+- While cypress is running (`yarn cypress:open`), any saved modifications to the test files will automatically reload cypress and re-run the tests
+- The real-world app and example Cypress tests are written in [Typescript](https://www.typescriptlang.org/), which is a typed programming language built on top of Javascript. It is **not** required for you to write your tests with Typescript, plain Javascript is perfectly valid
 - The existing cypress tests in `cypress/tests/ui` can be used as inspiration for how to structure your tests and take advantage of various patterns/selectors within cypress
-
 
 ### Solutions are Judged on
 1. Readability of your code - Can another developer review your code and easily understand the intent/purpose?
