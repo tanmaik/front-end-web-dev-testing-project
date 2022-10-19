@@ -60,7 +60,7 @@ describe("User Settings", function () {
   });
 
   it("updates first name, last name, email and phone number", function () {
-        // The following line is meant to fail the test on purpose. You can remove it and update accordingly
-        cy.get("#fail-on-purpose").should("exist")
+    // The following line is meant to fail the test on purpose. You can remove it and update accordingly
+    cy.get("#fail-on-purpose").should("exist");
   });
 });

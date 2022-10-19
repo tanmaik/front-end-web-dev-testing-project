@@ -112,7 +112,7 @@ describe("User Sign-up and Login", function () {
   });
 
   it("should allow a visitor to sign-up, login, and logout", function () {
-     // The following line is meant to fail the test on purpose. You can remove it and update accordingly
-        cy.get("#fail-on-purpose").should("exist")
+    // The following line is meant to fail the test on purpose. You can remove it and update accordingly
+    cy.get("#fail-on-purpose").should("exist");
   });
 });
