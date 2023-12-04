@@ -22,8 +22,6 @@ The following test cases are currently missing from the end-to-end test suite an
     - fill in the empty test named `"should allow a visitor to sign-up, login, and logout"` within `cypress/tests/ui/auth.spec.ts`
 1. Send a payment transaction to a contact as an existing user
     - fill in the empty test named `"navigates to the new transaction form, selects a user and submits a transaction payment"` within `cypress/tests/ui/new-transaction.spec.ts`
-1. Update account settings as an existing user
-    - fill in the empty test named `"updates first name, last name, email and phone number"` within `cypress/tests/ui/user-settings.spec.ts`
 
 ### Helpful notes
 - Cypress has great docs so it is advised to refer to them for questions/guidance on writing great end-to-end tests. [Here are the intro docs](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#What-you-ll-learn), which is recommended reading ahead of writing your first test

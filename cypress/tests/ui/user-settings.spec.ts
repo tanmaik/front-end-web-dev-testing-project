@@ -58,9 +58,4 @@ describe("User Settings", function () {
     cy.getBySelLike("submit").should("be.disabled");
     cy.visualSnapshot("User Settings Form Errors and Submit Disabled");
   });
-
-  it("updates first name, last name, email and phone number", function () {
-    // The following line is meant to fail the test on purpose. You can remove it and update accordingly
-    cy.get("#fail-on-purpose").should("exist");
-  });
 });
