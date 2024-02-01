@@ -52,4 +52,4 @@ Cypress.Commands.add('getBySelLike', (selector, ...args) => {
 
 
 ### Submission
-Submit your project by providing a github url or zip file containing your submission.
+Submit your project by providing a github url or zip file containing your submission. If sending a zip you can remove the `node_modules` directory to reduce the size of the folder, or just send over the test files that you modified.
