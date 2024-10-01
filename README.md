@@ -9,7 +9,7 @@ This project is designed to exercise your web development skills, specifically f
 ### How to run
 1. Open up a terminal or command prompt and switch to the directory where you installed this repository
 2. To install the application's dependencies, run `yarn install`
-3. To run the application, run `yarn dev`
+3. To run the application, run `yarn dev` (it may take a minute to boot)
 4. To run Cypress, open up a separate terminal, navigate to this repo's directory and run `yarn cypress:open`
 5. At this point, you should have 2 applications running - the real-world payment application and the cypress application
 6. You are now ready to start writing tests! Open this repository in your favorite code editor (We recommend [VSCode](https://code.visualstudio.com/) for front-end development) and review the project structure. The test files that you will be updating are located at `cypress/tests/ui`. The source code for the application is located in the `src` directory
