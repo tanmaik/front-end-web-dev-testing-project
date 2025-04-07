@@ -189,7 +189,44 @@ describe("New Transaction", function () {
   });
 
   it("navigates to the new transaction form, selects a user and submits a transaction payment", function () {
-    // The following line is meant to fail the test on purpose. You can remove it and update accordingly
-    cy.get("#fail-on-purpose").should("exist");
+    // Define the payment details
+    const payment = {
+      amount: "50",
+      description: "pizza",
+    };
+
+    // Navigate to new transaction form
+    cy.getBySelLike("new-transaction").click();
+    cy.wait("@allUsers");
+
+    // Select a user from the list
+    cy.getBySelLike("user-list-item").contains(ctx.contact!.firstName).click({ force: true });
+    cy.visualSnapshot("User Selected For Payment");
+
+    // Enter payment details
+    cy.getBySelLike("amount-input").type(payment.amount);
+    cy.getBySelLike("description-input").type(payment.description);
+    cy.visualSnapshot("Payment Amount and Description Entered");
+
+    // Submit the payment (not request)
+    cy.getBySelLike("submit-payment").click();
+    cy.wait("@createTransaction");
+
+    // Verify success notification
+    cy.getBySel("alert-bar-success")
+      .should("be.visible")
+      .and("have.text", "Transaction Submitted!");
+    cy.visualSnapshot("Transaction Payment Submitted Notification");
+
+    // Return to the transactions list
+    cy.getBySelLike("return-to-transactions").click();
+
+    // Check the personal transactions tab to verify the payment
+    cy.getBySelLike("personal-tab").click().should("have.class", "Mui-selected");
+    cy.wait("@personalTransactions");
+
+    // Verify the transaction shows up in the list
+    cy.getBySelLike("transaction-item").should("contain", payment.description);
+    cy.visualSnapshot("Transaction Payment Listed in Personal Tab");
   });
 });
