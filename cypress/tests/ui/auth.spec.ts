@@ -112,7 +112,65 @@ describe("User Sign-up and Login", function () {
   });
 
   it("should allow a visitor to sign-up, login, and logout", function () {
-    // The following line is meant to fail the test on purpose. You can remove it and update accordingly
-    cy.get("#fail-on-purpose").should("exist");
+    // Generate a random username to avoid conflicts with existing users
+    const username = `testuser${Math.floor(Math.random() * 10000)}`;
+    const password = "s3cret";
+    const firstName = "Test";
+    const lastName = "User";
+
+    // Visit the sign-up page
+    cy.visit("/signup");
+
+    // Fill in the sign-up form
+    cy.getBySel("signup-first-name").type(firstName);
+    cy.getBySel("signup-last-name").type(lastName);
+    cy.getBySel("signup-username").type(username);
+    cy.getBySel("signup-password").type(password);
+    cy.getBySel("signup-confirmPassword").type(password);
+    cy.visualSnapshot("Sign Up Form Filled");
+
+    // Submit the form
+    cy.getBySel("signup-submit").click();
+
+    // Wait for signup request to complete
+    cy.wait("@signup");
+
+    // After signup, we should be redirected to the signin page
+    cy.location("pathname").should("eq", "/signin");
+    cy.visualSnapshot("Redirected to Sign In");
+
+    // Login with the newly created credentials
+    cy.getBySel("signin-username").type(username);
+    cy.getBySel("signin-password").type(password);
+    cy.getBySel("signin-submit").click();
+
+    // After first login, the onboarding dialog should appear
+    // Verify we're logged in
+    cy.getBySel("sidenav-username").should("contain", username);
+
+    // Handle the onboarding dialog - click the NEXT button
+    cy.getBySel("user-onboarding-next").click();
+
+    // Now we should be on the create bank account form
+    cy.getBySelLike("bankName-input").type("Test Bank");
+    cy.getBySelLike("routingNumber-input").type("123456789");
+    cy.getBySelLike("accountNumber-input").type("987654321");
+    cy.visualSnapshot("Bank Account Form Filled");
+
+    // Submit the bank account form
+    cy.getBySelLike("submit").click();
+
+    cy.getBySel("user-onboarding-next").click();
+
+    // Logout
+    // Handle mobile vs desktop view
+    if (isMobile()) {
+      cy.getBySel("sidenav-toggle").click();
+    }
+    cy.getBySel("sidenav-signout").click();
+
+    // Verify we're logged out and redirected to sign-in page
+    cy.location("pathname").should("eq", "/signin");
+    cy.visualSnapshot("Logged Out");
   });
 });
